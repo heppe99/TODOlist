@@ -7,7 +7,7 @@ function User(){
     this.todolist = []
 }
 
-let userList = [];
+
 
 var UserManagement = (function(){
 
@@ -15,7 +15,7 @@ var UserManagement = (function(){
 
         user = new User();
 
-        userList = getUser();
+        let userList = LocalStorageHelper.getUser();
 
         for(let i = 0; i < userList.length; i++){
             if (userList[i].email === email){
@@ -33,6 +33,17 @@ var UserManagement = (function(){
         localStorage.setItem("user", userString);
     }
 
+
+    return{
+        addUser
+    }
+
+})();
+
+
+var LocalStorageHelper = (function(){
+    let userList = [];
+
     function getUser(){
         const userString = localStorage.getItem("user");
 
@@ -41,16 +52,22 @@ var UserManagement = (function(){
             return userList;
         }
 
-        const user = JSON.parse(userString);
-        
-        
-        return user;
+        const temp = JSON.parse(userString);
+
+        userList = temp.users;
+        return userList;
+
     }
 
+    function addUser(){
+
+        
+    }
 
     return{
-        addUser,
         getUser
+
     }
+
 
 })();
