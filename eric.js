@@ -1,42 +1,51 @@
-// Create an array that serves as the container for our objects
-let listItems = [];
+//You can create a todoList = [] in the console to try it...  
 
-// Here we create our constructor - blueprint for objects -
-// We can add several more properties later if needed
-function ToDo(activity, priority) {
-
-    this.activity = activity;
-    this.priority = priority;    
-
-}
-
-// Create module in which we group together our to do-list functions   
 var ToDoListHandler = (function () {
 
-    // Function creates to do-object by calling constructor and pushing it to the array
-    function addItem(itemString, itemPriority) {
-        
-        const todo = new ToDo(itemString, itemPriority);
-        listItems.push(todo);
+    function addItem(todoList, item, prio) {
 
+        const historyStats = {
+            dateCreated: new Date(),
+            dateCompleted: undefined,
+            priorityChanges: [],
+        }
+
+        const todo = {
+            activity: item,
+            priority: prio,
+            completed: false,
+            history: historyStats
+        }
+
+        todoList.push(todo);
     }
 
-    function deleteItem(indexNumber) {
-  
-        listItems.splice(indexNumber, 1);
+    function changePriority(todoList, index, newPrio) {
+        priorityChange = {
+            oldPriority: todoList[index].priority,
+            newPriority: newPrio,
+            dateChanged: new Date()
+        }
+
+        todoList[index].history.priorityChanges.push(priorityChange);
+        todoList[index].priority = newPrio;
     }
-    // Function -for the time being - to test loggin an item to the console   
-    function logItem (indexNumber) {
 
-        console.log("Activity: " + listItems[indexNumber].activity + " "
-        + "Prio: " + listItems[indexNumber].priority);
-
+    function markAsComplete(todoList, index) {
+        todoList[index].completed = true;
+        todoList[index].history.dateCompleted = new Date();
+    }
+    
+    function deleteItem(todoList, index) {
+        todoList.splice(index, 1);
     }
 
     return {
         addItem,
         deleteItem,
-        logItem,
+        markAsComplete,
+        changePriority
     }
 
 })();
+
