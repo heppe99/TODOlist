@@ -40,11 +40,18 @@ var ToDoListHandler = (function () {
         todoList.splice(index, 1);
     }
 
+    function getItem(todoList, index){
+        itemToReturn = todoList[index];
+
+        return itemToReturn;
+    }
+
     return {
         addItem,
         deleteItem,
         markAsComplete,
-        changePriority
+        changePriority,
+        getItem
     }
 
 })();

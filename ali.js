@@ -31,7 +31,7 @@ var documentEdit = (function(){
         text2.innerText= text;
     }
     function addLi(text){
-        const text2 = document.getElementById("ourUl");
+        const text2 = document.getElementById("todoList");
         text2.innerHTML += "<li>" + text + "</li>"
     }
     return {
