@@ -82,6 +82,7 @@ var UserManagement = (function(){
         user = new User();
 
         for(let i = 0; i < userList.length; i++){
+            
             if (userList[i].email === email){
                 console.log("Email already registerd.")
                 console.log("Try to login or use another Email.");
@@ -161,12 +162,12 @@ var LocalStorageHelper = (function(){
         localStorage.setItem("user", userString);
     }
 
+
     return{
         getUsers,
         addUser,
         updateUsers
 
     }
-
 
 })();
