@@ -30,9 +30,21 @@ var documentEdit = (function(){
         const text2 = document.getElementById("pText");
         text2.innerText= text;
     }
-    function addLi(text){
-        const text2 = document.getElementById("todoList");
-        text2.innerHTML += "<li>" + text + "</li>"
+    function addLi(text, index){
+        btn = "<button class=\"deleteBtn\" id=\"" + index +"\" >X</button>"
+        let liID = index + 10;
+        $("#todoList").append("<li id=\"" + liID +"\" >" + text + btn + "</li>")
+        $('#' + index).click(function(){
+            ToDoListHandler.deleteItem(todoList, index);
+            deleteLi(liID);
+
+            });
+    }
+    function deleteLi(index){
+        console.log(index);
+        
+        $("#"+index).remove();
+        
     }
     return {
         changeh1,

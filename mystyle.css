@@ -1,13 +1,14 @@
 #addDiv{
     background-color: darkkhaki;
+    width: 450px;
 
 }
 #addToListBtn{
-    width: 15%;
-    padding: 10px;
+    width: 20%;
+    padding: 5px;
     color: #555;
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     cursor: pointer;
     font-weight: bold;
 }

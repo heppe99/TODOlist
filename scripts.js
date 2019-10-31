@@ -1,3 +1,11 @@
+/*
+
+DO NOT USE THIS.
+THIS IS JUST A PLAYGROUND FOR ME
+//HAMPUS
+
+
+*/
 function User(){
     this.id
     this.email
