@@ -8,8 +8,9 @@ var EventHandlers = (function(){
         $("#addToListBtn").click(onClickAddItemTodo); 
     }
 
+    
     //tar värdet från första och andra textboxen
-    function onClickAddItemTodo(){
+        function onClickAddItemTodo(){
         const inputItem = $("#inputItemToList").val();
         const prioItem = $("#inputPrioItem").val();
         
@@ -24,6 +25,8 @@ var EventHandlers = (function(){
         documentEdit.addLi(todoItemInHtml, currentIndex);
         
     }
+
+
     return{init}
 
 })();

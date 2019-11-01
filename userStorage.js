@@ -1,9 +1,49 @@
 var TODOstorage = (function(){
    // var userList = [];
 
+   
+
+    // To access this list from the console you type " EditUsers.userList "
+    let userList = [];
+
+    // Add a new User to the listUser
+    function addUser(id, name, email) {
+
+        //Object user
+        const user = {
+            id: id,
+            email: email,
+            name: name,
+            todoList: [],
+        };
+
+        user.id = id;
+        user.name = name;
+        user.email = email;
+        userList.push(user);
+
+    }
+
+    // delete user from the listUser / Just enter his name (input)
+    function removeUser(input) {
+
+        for (let user in userList) {
+            if (userList[user].name === input) {
+                userList.splice(user, 1);
+            }
+        }
+    }
+
+    // Show the total users in the list.
+    function showUser() {
+
+        userList.forEach(name => console.log(name));
+    }
+
+//----------------------------- ls ----------------------------------------
     function init(){
-        const lsTodos = localStorage.getItem("usersInLocalStorage");
-        EditUsers.userList = JSON.parse(lsTodos);
+        const lsUser = localStorage.getItem("usersInLocalStorage");
+        EditUsers.userList = JSON.parse(lsUser);
 
         if(userList === null) {
             userList = [];
@@ -15,8 +55,8 @@ var TODOstorage = (function(){
     function saveUser (done, description){
         //Get max ID i todos
         let maxId = 0;
-        for (const i in userList){
-            const todo = userList[i];
+        for (const i in EditUsers.userList){
+            const user = EditUsers.userList[i];
             if (todo.id > maxId){
                 maxId = todo.id;
             }
