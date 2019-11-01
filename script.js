@@ -4,6 +4,7 @@ var EventHandlers = (function(){
 
     function init(){
         $("#addToListBtn").click(onClickAddItemTodo);
+        $(".loginBtn").click(onClickLogin);
     }
     function onClickAddItemTodo(){
         const inputItem = $("#inputItemToList").val();
@@ -18,6 +19,10 @@ var EventHandlers = (function(){
         
         documentEdit.addLi(todoItemInHtml, currentIndex);
         
+    }
+
+    function onClickLogin(){
+        //TODO
     }
 
 
