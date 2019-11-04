@@ -17,6 +17,7 @@ var EventHandlers = (function() {
             alert ("Priotieringen kan max vara 5");
             return;
         }
+        
         if (prioItem < 1) {
             alert ("Prioriteringen behöver minst vara 1");
             return;

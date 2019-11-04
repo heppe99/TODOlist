@@ -1,6 +1,7 @@
 // This Module is to manage the users info
 var EditUsers = (function () {
 
+
     // To access this list from the console you type " EditUsers.userList "
     let userList = [];
 
@@ -34,13 +35,15 @@ var EditUsers = (function () {
         }
     }
 
-    // Show the total users in the list.
+
+    // Show each user info in userList
     function showUser() {
 
         userList.forEach (name => console.log(name));
     }
 
     return {
+
         userList,
         addUser,
         removeUser,

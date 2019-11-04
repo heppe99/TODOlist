@@ -9,7 +9,6 @@ var ToDoListHandler = (function() {
             priorityChanges: [],
         }
 
-        // våra aktiviter som läggs i varje todolist element
         const todo = {
             activity: item,
             priority: prio,
