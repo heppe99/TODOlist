@@ -34,11 +34,11 @@ var documentEdit = (function(){
     }
 
     function addLi (text, index) {
-        btn = " <button class = \"deleteBtn\" id = \"" + index + "\" > X </button>" // Skapar en knapp som tar bort toods
-        let liID = index + 1000; 
+        btn = " <button class = \"deleteBtn\" id = \"btn" + index + "\" > X </button>" // Skapar en knapp som tar bort toods
+        let liID = "li"+index; 
         $("#todoList").append ("<li id=\"" + liID + "\" >" + text + btn + "</li>")
 
-        $('#' + index).click (function(){
+        $('#btn' + index).click (function(){
             ToDoListHandler.deleteItem (todoList, index);
             deleteLi (liID);
         });
