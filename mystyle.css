@@ -1,15 +1,17 @@
+#bigContainer{
+   background-color: black;
+   border-radius: 5px;
+}
+
 #addDiv{
-    background-color: black;
-   width: 450px;
-   height: 100px;
-   margin-top: 50px;
+   padding: 10px;
 }
 
 .container {
    display: flex;
    background-color: lime;
    padding: 10px;
-   border-radius: 5px;
+  
  }
  
  #inputfields-signup {
@@ -19,7 +21,16 @@
  #userDiv {
    flex: 1;
  }
+ #todoList{
+    width: 50%;
+    color: black;
+    margin-left: 10px;
+ }
 
+li{
+   list-style: none;
+   list-style-type: none;
+}
 
 ul li::before{
    content: "\2022";
@@ -30,19 +41,6 @@ ul li::before{
    margin-left: -1em;
  }
 
-body{
-   background-color: white;
-}
-
-..managerBtn{
-   width: 20%;
-   padding: 5px;
-   text-align: center;
-   font-size: 12px;
-   cursor: pointer;
-   font-weight: bold;
-   background-color: white;
-}
 
 /* #Clouds Flat Button
 ==================================================*/
@@ -79,33 +77,30 @@ input{
    height: 20px;
    padding: 5px;
    font-size: 14px;
+   border-radius: 2px;
 }
 .deleteBtn{
-   margin-left:50px;
    color :red;
    background-color: lightblue;
-
    background-color: Transparent;
    background-repeat:no-repeat;
    border: none;
    cursor:pointer;
    overflow: hidden;
    outline:none;
-}
-
-#registerBtn{
-   
+   margin-right: 0px;
 }
 
 #logOutBtn{
    float:right;
 }
 
-footer {
-   display: flex;
-   background-color: lime;
-   padding: 10px;
-   justify-content: center;
-   top: 400px;
-   position: relative;
- }
+#header{
+   font-family: "Trebuchet MS", Helvetica, sans-serif;
+   color: white;
+   margin-left: 100px;
+}
+
+.completeBtn{
+   margin-left: 1%;
+}
