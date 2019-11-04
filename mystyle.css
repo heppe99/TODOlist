@@ -3,6 +3,8 @@
   width: 450px;
   height: 100px;
   margin-top: 50px;
+  padding: 3px;
+  border-end-end-radius: 25%;
 }
 
 .container {
