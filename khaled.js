@@ -1,6 +1,7 @@
 // This Module is to manage the users info
 var EditUsers = (function () {
 
+
     // To access this list from the console you type " EditUsers.userList "
     let userList = [];
 
@@ -32,14 +33,17 @@ var EditUsers = (function () {
         }
     }
 
-    // Show the total users in the list.
+
+    // Show each user info in userList
     function showUser() {
 
         userList.forEach(name => console.log(name));
     }
 
 
+
     return {
+
         userList,
         addUser,
         removeUser,
@@ -69,19 +73,47 @@ var EditUsers = (function () {
 
 
 
-// // // This Module is to manipulate the DOM elements
-// // var DocumentEdit = (function() {
-// //     return {
-// //     }
-// // })();
-// // // This module is for event listeners
-// // var EventHandlers = (function() {
-// //     function init() {
-// //     }
-// //     // returns our initial event
-// //     return {
-// //         init
-// //     }
-// // })();
-// // // This loader the web page before starting our event 
-// // window.addEventListener("DOMContentLoaded", EventHandlers.init);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// This Module is to manipulate the DOM elements
+var DocumentEdit = (function () {
+
+
+
+
+    return {
+
+    }
+
+})();
+
+
+// This module is for event listeners
+var EventHandlers = (function () {
+    function init() {
+
+
+    }
+
+    // returns our initial event
+    return {
+        init
+    }
+})();
+
+// This loader the web page before starting our event 
+window.addEventListener("DOMContentLoaded", EventHandlers.init);
