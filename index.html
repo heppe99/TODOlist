@@ -10,27 +10,34 @@
 
 <body>
     <div id="bigContainer">
-            <div class="container">
-                    <div id="inputfields-signup">  <input type="text" id="registerInputName" placeholder="Name...">
+            <div class="container" style="background-color: lime">
+                    <div class="divLeft">  <input type="text" id="registerInputName" placeholder="Name...">
                         <input type="text" id="registerInputEmail" placeholder="Email...">
-                        <button class="managerBtn" id="registerBtn">Sign up</button>
+                        <button class="managerBtn bigBtn" id="registerBtn">Sign up</button>
                     </div>
-                    <div id = "userDiv">
+                    <div class= "divRight">
                         <input type = "text" id = "loginInput" placeholder = "Email...">
-                        <button class = "managerBtn loginBtn"> Log in </button>
-                        <button class="managerBtn" id="logOutBtn">Log out</button>
+                        <button class = "managerBtn bigBtn loginBtn"> Log in </button>
+                        <button class="managerBtn bigBtn" id="logOutBtn">Log out</button>
                     </div>
                 </div>
-        
-            <div id = "addDiv">
-                <h1 id="header"> Things to do </h1>
-                <input type = "text" id = "inputItemToList" placeholder = "Add to list...">
-                <input type = "text" id = "inputPrioItem" placeholder = "Prio 1-5">
-                <button class="managerBtn"  id = "addToListBtn">Add</button>
+            <div class="container">
+                    <div class = "divLeft divAdd">
+                        <h1 id="header"> Things to do </h1>
+                        <input type = "text" id = "inputItemToList" placeholder = "Add to list...">
+                        <input type = "text" id = "inputPrioItem" placeholder = "Prio 1-5">
+                        <button class="managerBtn smallBtn"  id = "addToListBtn">Add</button>
+                    </div>
+                    <div class="divRight">
+                            <p style="color:white" id="userName">Username: </p>
+                            <p style="color:white" id="userEmail">E-mail: </p>
+                            <p style="color:white" id="userTodos">Todos: </p>
+                    </div>
             </div>
     </div>
 
     <ul id = "todoList"> </ul>
+
   
     
     <!-- <script src="scripts.js"></script>  -->
