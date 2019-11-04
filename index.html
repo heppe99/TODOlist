@@ -9,23 +9,23 @@
 </head>
 
 <body>
-    <div id="inputfields-signup">  <input type="text" id="registerInputName" placeholder="Name...">
-        <input type="text" id="registerInputEmail" placeholder="Email...">
-        <button id="registerBtn">Sign up</button>
-    </div>
-    
-    <div id = "userDiv">
-        <input type = "text" id = "loginInput" placeholder = "Email...">
-        <button class = "loginBtn"> Login </button>
-        <button id="logOutBtn">Log Out</button>
-    </div>
-    
+    <div class="container">
+            <div id="inputfields-signup">  <input type="text" id="registerInputName" placeholder="Name...">
+                <input type="text" id="registerInputEmail" placeholder="Email...">
+                <button class="managerBtn" id="registerBtn">Sign up</button>
+            </div>
+            <div id = "userDiv">
+                <input type = "text" id = "loginInput" placeholder = "Email...">
+                <button class = "managerBtn loginBtn"> Log in </button>
+                <button class="managerBtn" id="logOutBtn">Log out</button>
+            </div>
+        </div>
 
     <div id = "addDiv">
        <!-- <h1 style = "margin-left: 120px;"  >Things to do</h1> -->
         <input type = "text" id = "inputItemToList" placeholder = "Add to list...">
         <input type = "text" id = "inputPrioItem" placeholder = "Prio 1-5">
-        <button id = "addToListBtn">Add</button>
+        <button class="managerBtn"  id = "addToListBtn">Add</button>
     </div>
 
     
