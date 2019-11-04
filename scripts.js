@@ -18,15 +18,15 @@ function TODOItem(){
     this.todo;
     this.priority;
     this.dateAdded = date.constructor()
-
+    
 }
+
 function TODOlist(){
     this.name;
 }
 
-
 var TODOManager = (function(){
-
+    
     function createTodo(user, itemString, itemPriority, index){
         td = new TODOItem();
         td.todo = itemString;

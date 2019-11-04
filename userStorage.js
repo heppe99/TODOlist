@@ -2,13 +2,14 @@ var TODOstorage = (function(){
    // var userList = [];
 
     function init(){
-        const lsTodos = localStorage.getItem("usersInLocalStorage");
-        EditUsers.userList = JSON.parse(lsTodos);
+
+        const lsTodos = localStorage.getItem ("usersInLocalStorage");
+        EditUsers.userList = JSON.parse (lsTodos);
 
         if(userList === null) {
             userList = [];
         }
-
+        
     // console.log("Text");
     }
 
@@ -17,10 +18,11 @@ var TODOstorage = (function(){
         let maxId = 0;
         for (const i in userList){
             const todo = userList[i];
-            if (todo.id > maxId){
+            if (todo.id > maxId) {
                 maxId = todo.id;
             }
         }
+
         // Create TODO object
         const todo = {
             id: maxId + 1,

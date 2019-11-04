@@ -1,8 +1,7 @@
 //You can create a todoList = [] in the console to try it...  
-
 var ToDoListHandler = (function() {
 
-    function addItem(todoList, item, prio) {
+    function addItem (todoList, item, prio) {
 
         const historyStats = {
             dateCreated: new Date(),
@@ -18,32 +17,32 @@ var ToDoListHandler = (function() {
             history: historyStats
         }
 
-        todoList.push(todo);
+        todoList.push (todo);
     }
 
-    function changePriority(todoList, index, newPrio) {
+    function changePriority (todoList, index, newPrio) {
+
         priorityChange = {
             oldPriority: todoList[index].priority,
             newPriority: newPrio,
             dateChanged: new Date()
         }
 
-        todoList[index].history.priorityChanges.push(priorityChange);
-        todoList[index].priority = newPrio;
+        todoList [index].history.priorityChanges.push (priorityChange);
+        todoList [index].priority = newPrio;
     }
 
-    function markAsComplete(todoList, index) {
-        todoList[index].completed = true;
-        todoList[index].history.dateCompleted = new Date();
-    }
-    
-    function deleteItem(todoList, index) {
-        todoList.splice(index, 1);
+    function markAsComplete (todoList, index) {
+        todoList [index].completed = true;
+        todoList [index].history.dateCompleted = new Date();
     }
 
-    function getItem(todoList, index){
-        itemToReturn = todoList[index];
+    function deleteItem (todoList, index) {
+        todoList.splice (index, 1);
+    }
 
+    function getItem (todoList, index){
+        itemToReturn = todoList [index];
         return itemToReturn;
     }
 
@@ -56,4 +55,3 @@ var ToDoListHandler = (function() {
     }
 
 })();
-

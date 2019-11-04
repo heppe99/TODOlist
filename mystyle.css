@@ -1,9 +1,23 @@
-#addDiv{
-    background-color: darkkhaki;
+#addDiv {
+     /* background-color: darkkhaki; */
     width: 450px;
-
+    height: 100px;
+    margin-top: 50px;
 }
-#addToListBtn{
+
+ul li::before {
+    content: "\2022";
+    color: red;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+  }
+
+body{
+    background-color: lightblue;
+}
+#addToListBtn {
     width: 20%;
     padding: 5px;
     color: #555;
@@ -12,7 +26,7 @@
     cursor: pointer;
     font-weight: bold;
 }
-#inputToList{
+#inputToList {
     margin: 0;
     border: none;
     border-radius: 0;
@@ -22,5 +36,14 @@
     font-size: 16px;
 }
 .deleteBtn {
-    margin-left:6px;
+    margin-left:50px;
+    color :red;
+    background-color: lightblue;
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
 }

@@ -5,7 +5,7 @@ var EditUsers = (function () {
     let userList = [];
 
     // Add a new User to the listUser
-    function addUser(id, name, email) {
+    function addUser (id, name, email) {
 
         //Object user
         const user = {
@@ -18,16 +18,18 @@ var EditUsers = (function () {
         user.id = id;
         user.name = name;
         user.email = email;
-        userList.push(user);
 
+        userList.push (user);
     }
 
     // delete user from the listUser / Just enter his name (input)
-    function removeUser(input) {
+    function removeUser (input) {
 
         for (let user in userList) {
-            if (userList[user].name === input) {
+        
+            if (userList [user].name === input) {
                 userList.splice(user, 1);
+       //         userList(delete 1);
             }
         }
     }
@@ -35,9 +37,8 @@ var EditUsers = (function () {
     // Show the total users in the list.
     function showUser() {
 
-        userList.forEach(name => console.log(name));
+        userList.forEach (name => console.log(name));
     }
-
 
     return {
         userList,
@@ -47,27 +48,6 @@ var EditUsers = (function () {
     }
 
 })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // // // This Module is to manipulate the DOM elements
 // // var DocumentEdit = (function() {
