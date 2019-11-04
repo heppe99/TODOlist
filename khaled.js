@@ -1,3 +1,5 @@
+/*
+
 // This Module is to manage the users info
 var EditUsers = (function () {
 
@@ -68,3 +70,4 @@ var EditUsers = (function () {
 // // })();
 // // // This loader the web page before starting our event 
 // // window.addEventListener("DOMContentLoaded", EventHandlers.init);
+*/
