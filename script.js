@@ -142,7 +142,17 @@ var EventHandlers = (function () {
         $("#todoList").empty();
         documentEdit.setUserTodo(todoList.length)
         for (const i in todoList) {
-            const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed)
+            let time = todoList[i].history.timeSpent
+            if(time === undefined){
+                time = "0";
+            }
+            else{
+                
+                time = time.toString();
+                time = time.substring(0, 4);
+                
+            }
+            const todoItemInHtml = ("| " + todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed + " | Time Spent: " + time + " h")
             documentEdit.addLi(todoItemInHtml, i);
         }
     }
