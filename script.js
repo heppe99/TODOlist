@@ -1,8 +1,8 @@
 
 
 var EventHandlers = (function () {
-    //We need to declare tree overall variables in order to manage everything , 
-    // to call the functions from other modules in this module  
+    
+    
     var todoList = [];
     let currentId = null;
     let signedIn = false;
@@ -10,8 +10,7 @@ var EventHandlers = (function () {
     function init() {
         $("#addToListBtn").click(onClickAddItemTodo);
 
-        //Let's group all our events here
-        //We still need an event for pushing the complete button 
+        //Handles deletebutton on each todo
         $(document).on('click', '.deleteBtn', function () {
             
             ToDoListHandler.deleteItem(todoList, this.id);
@@ -23,7 +22,7 @@ var EventHandlers = (function () {
 
             refresh();   
         })
-
+        //Handles completebutton on each todo
         $(document).on('click', '.completeBtn', function () {
             console.log( "COMPLETE BUTTON :" + this.id);   
             ToDoListHandler.markAsComplete(todoList, this.id / 1000);
@@ -31,8 +30,6 @@ var EventHandlers = (function () {
             
             refresh();
         })
-
-
 
         //register event
         $("#registerBtn").click(function () {
@@ -70,15 +67,13 @@ var EventHandlers = (function () {
                 
             }
         })
-
+        //Sign out event
         $("#logOutBtn").click(function(){
             $("#addDiv").hide();
             $("#todoList").empty();
             currentId = -1;
             signedIn = false;
         })
-
-
     }
 
 
@@ -93,12 +88,8 @@ var EventHandlers = (function () {
             //tar in en todolist av en user, 
             ToDoListHandler.addItem(todoList, inputItem, prioItem);
 
-            const currentItem = todoList[todoList.length - 1];
-            const currentIndex = todoList.length - 1;
-            //Creates string of html 
-            const todoItemInHtml = (currentItem.activity + " | Prio: " + currentItem.priority + " | Complete: " + currentItem.completed)
-            //Sends string into Addli so we can view our newly added item on screen
-            documentEdit.addLi(todoItemInHtml, currentIndex);
+            refresh();
+            
             //Important: we need to save the updated to do list with its user to local storage 
             UserStorage.updateUser(currentId, todoList);
         }
@@ -107,6 +98,7 @@ var EventHandlers = (function () {
         }
     }
 
+    //Refreshes the UL list
     function refresh(){
         $("#todoList").empty();
             
@@ -127,6 +119,8 @@ var UserStorage = (function () {
 
     var userList = [];
 
+
+    //Gets all the users from local Storage to userList
     function init() {
         const listUsers = localStorage.getItem("UserListLocalStorage");
         userList = JSON.parse(listUsers);
@@ -136,6 +130,7 @@ var UserStorage = (function () {
         }
     }
 
+    //Saves new user in LocalStorage
     function saveUser(name, email) {
         //Sets the max id 
         let maxId = 0;
@@ -168,10 +163,12 @@ var UserStorage = (function () {
         saveChangesUserList();
     }
 
+    //Not in use...
     function getUserList() {
         return userList;
     }
 
+    //Gets the user object from user email.
     function getUserByEmail(email) {
 
         for (const i in userList) {
@@ -184,7 +181,6 @@ var UserStorage = (function () {
         }
         return null;
     }
-
     
     //removes user, haven't done anything with this, kinda copied Linus code friday
     function removeUser(id) {
@@ -200,7 +196,7 @@ var UserStorage = (function () {
     }
 
     // important function .. everytime we add or remove an item on the to do list
-    // we need to update the user and his updated to do list in local storage
+    // we need to update the user and its updated to do list in local storage
     function updateUser(id, updatedTodoList) {
         for (const i in userList) {
             //Update if id is found
@@ -212,7 +208,7 @@ var UserStorage = (function () {
         saveChangesUserList();
     }
 
-
+    //Saves to local storage
     function saveChangesUserList() {
         const listUsers = JSON.stringify(userList);
         localStorage.setItem('UserListLocalStorage', listUsers);
@@ -228,7 +224,6 @@ var UserStorage = (function () {
         saveChangesUserList
 
     }
-
 
 })();
 
@@ -256,19 +251,20 @@ var documentEdit = (function () {
     
     return {
         addLi,
-        deleteLi,  //add this so we'll be ablt to call it in script.js
+        deleteLi,  
         markAsComplete
     }
 })();
 
 var ToDoListHandler = (function() {
     
-
+    //Adds an item to the todolist with and itemtext and a prio
     function addItem(todoList, item, prio) {
 
         const historyStats = {
             dateCreated: new Date(),
             dateCompleted: undefined,
+            timeSpent: undefined,
             priorityChanges: [],
         }
 
@@ -284,7 +280,7 @@ var ToDoListHandler = (function() {
         
         
     }
-
+    //Changes the current prio of an item. And pusches it to and history list
     function changePriority(todoList, index, newPrio) {
         priorityChange = {
             oldPriority: todoList[index].priority,
@@ -295,16 +291,29 @@ var ToDoListHandler = (function() {
         todoList[index].history.priorityChanges.push(priorityChange);
         todoList[index].priority = newPrio;
     }
-
+    //Marks an item as complete.
     function markAsComplete(todoList, index) {
         todoList[index].completed = true;
         todoList[index].history.dateCompleted = new Date();
+
+        let dateCreate = new Date(todoList[index].history.dateCreated); 
+        let dateFinish = todoList[index].history.dateCompleted;
+        
+
+        let timespent = (dateFinish - dateCreate);
+        console.log(dateFinish.getTime());
+        console.log(dateCreate.getTime());
+        timespent = (timespent / 1000 /  60 / 60)
+        console.log(timespent);
+        
+        todoList[index].history.timeSpent = timespent;
+
     }
-    
+    //Deletes an item from todolist.
     function deleteItem(todoList, index) {
         todoList.splice(index, 1);
     }
-
+    //Gets an item from the todolist.
     function getItem(todoList, index){
         itemToReturn = todoList[index];
 
@@ -321,7 +330,7 @@ var ToDoListHandler = (function() {
 
 })();
 
-// we need to initialize two modules... userstorage to get the userlist !
+
 $(document).ready(function () {
 
     $("#addDiv").hide();
