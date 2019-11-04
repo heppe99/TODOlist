@@ -74,4 +74,7 @@ footer {
   display: flex;
   background-color: lime;
   padding: 10px;
+  justify-content: center;
+  top: 400px;
+  position: relative;
 }
