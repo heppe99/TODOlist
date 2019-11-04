@@ -57,6 +57,8 @@ var EventHandlers = (function () {
             documentEdit.setUserName(user.name);
             documentEdit.setUserEmail(user.email);
             $("#addTodos").show();
+            $("#registerInputName").val("");
+            $("#registerInputEmail").val("");
             refresh();
 
         });
@@ -85,6 +87,7 @@ var EventHandlers = (function () {
                 currentId = user.id;
                 console.log("You can manage your todo's now");
                 documentEdit.infoText("You can manage your todo's now");
+                $("#loginInput").val("");
 
             }
         })
@@ -390,15 +393,18 @@ var ToDoListHandler = (function () {
     //function that sort the to do-list
     function sortTodoList(todoList) {
 
+
         for (let i = 0; i < todoList.length - 1; i++) {
 
             checksLeft = (todoList.length - 1) - i;
             for (let y = 0; y < checksLeft; y++) {
 
                 if (todoList[y].priority > todoList[y + 1].priority) {
-                    const temp = todoList[y + 1].priority;
-                    todoList[y + 1].priority = todoList[y].priority;
-                    todoList[y].priority = temp;
+                   
+                    const temp = todoList[y + 1];
+                    todoList[y + 1] = todoList[y];
+                    todoList[y] = temp;
+                    
                 }
             }
         }
