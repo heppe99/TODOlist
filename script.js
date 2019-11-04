@@ -1,18 +1,18 @@
 
 
 var EventHandlers = (function () {
-    
-    
+
+
     var todoList = [];
     let currentId = null;
     let signedIn = false;
-   
+
     function init() {
         $("#addToListBtn").click(onClickAddItemTodo);
 
         //Handles deletebutton on each todo
         $(document).on('click', '.deleteBtn', function () {
-            
+
             ToDoListHandler.deleteItem(todoList, this.id);
             console.log("DELETE item: " + this.id);
 
@@ -20,32 +20,32 @@ var EventHandlers = (function () {
             console.log("DELETE li: " + this.id * 100);
             UserStorage.updateUser(currentId, todoList);
 
-            refresh();   
+            refresh();
         })
         //Handles completebutton on each todo
         $(document).on('click', '.completeBtn', function () {
-            console.log( "COMPLETE BUTTON :" + this.id);   
+            console.log("COMPLETE BUTTON :" + this.id);
             ToDoListHandler.markAsComplete(todoList, this.id / 1000);
             UserStorage.updateUser(currentId, todoList);
-            
+
             refresh();
         })
 
         //register event
         $("#registerBtn").click(function () {
-            
-            
+
+
             const name = $("#registerInputName").val();
             const email = $("#registerInputEmail").val();
-            
+
             tempUser = UserStorage.getUserByEmail(email);
-            if (tempUser != null){
+            if (tempUser != null) {
                 console.log("Email already in use! test");
                 return;
             }
 
             UserStorage.saveUser(name, email);
-            
+
 
             const user = UserStorage.getUserByEmail(email);
             todoList = user.todoList;
@@ -65,14 +65,14 @@ var EventHandlers = (function () {
             $("#todoList").empty();
             const email = $("#loginInput").val();
             let user = UserStorage.getUserByEmail(email);
-            
+
             if (user === null) {
                 console.log("Sign up first");
             }
             else {
                 $("#addTodos").show();
                 documentEdit.hideRegister();
-                
+
 
                 todoList = user.todoList;
                 refresh();
@@ -82,14 +82,14 @@ var EventHandlers = (function () {
                 //We need to set some values at this point so the user can 
                 // start adding items to his to do list
                 signedIn = true;
-                currentId = user.id; 
+                currentId = user.id;
                 console.log("You can manage your todo's now");
                 documentEdit.infoText("You can manage your todo's now");
-                
+
             }
         })
         //Sign out event
-        $("#logOutBtn").click(function(){
+        $("#logOutBtn").click(function () {
             $("#addTodos").hide();
             documentEdit.showRegister();
             $("#todoList").empty();
@@ -99,7 +99,15 @@ var EventHandlers = (function () {
             documentEdit.setUserEmail(" ");
             console.log("You have logged out.");
             documentEdit.infoText("You have logged out.");
-            
+
+        })
+
+        //click event that sorts list elements after prio
+        $("#sort-button").click(function () {
+            console.log("click works");
+            ToDoListHandler.sortTodoList(todoList);
+            UserStorage.updateUser(currentId, todoList);
+            refresh();
         })
     }
 
@@ -116,7 +124,7 @@ var EventHandlers = (function () {
             ToDoListHandler.addItem(todoList, inputItem, prioItem);
 
             refresh();
-            
+
             //Important: we need to save the updated to do list with its user to local storage 
             UserStorage.updateUser(currentId, todoList);
         }
@@ -127,7 +135,7 @@ var EventHandlers = (function () {
     }
 
     //Refreshes the UL list
-    function refresh(){
+    function refresh() {
         $("#todoList").empty();
         documentEdit.setUserTodo(todoList.length)
         for (const i in todoList) {
@@ -138,7 +146,7 @@ var EventHandlers = (function () {
 
 
 
-    return { init, refresh}
+    return { init, refresh }
 
 })();
 
@@ -178,8 +186,8 @@ var UserStorage = (function () {
         }
         // Create User object, used max id for initializing id 
         const user = {
-            id: maxId + 1, 
-            email:email,
+            id: maxId + 1,
+            email: email,
             name: name,
             todoList: [],
         };
@@ -209,7 +217,7 @@ var UserStorage = (function () {
         }
         return null;
     }
-    
+
     //removes user, haven't done anything with this, kinda copied Linus code friday
     function removeUser(id) {
         for (const i in userList) {
@@ -258,53 +266,53 @@ var UserStorage = (function () {
 
 var documentEdit = (function () {
 
-    function showRegister(){
+    function showRegister() {
         $("#registerInputName").show();
         $("#registerInputEmail").show();
         $("#registerBtn").show();
     }
-    function hideRegister(){
+    function hideRegister() {
         $("#registerInputName").hide();
         $("#registerInputEmail").hide();
         $("#registerBtn").hide();
     }
 
 
-    function addLi(text, index){
-        
-        btn = "<button class=\"deleteBtn\" id=\"" + index +"\" >✘</button>"
-        completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) +"\" >✔</button>"
-        $("#todoList").append("<li id=\"" + index * 100 +"\" >" + text + completeButton+ btn + "</li>");
-        
-    
+    function addLi(text, index) {
+
+        btn = "<button class=\"deleteBtn\" id=\"" + index + "\" >✘</button>"
+        completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) + "\" >✔</button>"
+        $("#todoList").append("<li id=\"" + index * 100 + "\" >" + text + completeButton + btn + "</li>");
+
+
     }
-    function deleteLi(index){
+    function deleteLi(index) {
         console.log(index);
-        
-        $("#"+index).remove();
-        
+
+        $("#" + index).remove();
+
     }
-    function markAsComplete(index){
-        $('#'+index).css({'text-decoration': 'line-through'})
+    function markAsComplete(index) {
+        $('#' + index).css({ 'text-decoration': 'line-through' })
     }
 
-    function setUserName(name){
+    function setUserName(name) {
         $("#userName").text("Name: " + name);
     }
-    function setUserEmail(email){
+    function setUserEmail(email) {
         $("#userEmail").text("E-mail: " + email);
     }
-    function setUserTodo(amount){
+    function setUserTodo(amount) {
         $("#userTodos").text("Todos: " + amount);
 
     }
-    function infoText(text){
+    function infoText(text) {
         $("#info").text(text);
     }
-    
+
     return {
         addLi,
-        deleteLi,  
+        deleteLi,
         markAsComplete,
         setUserEmail,
         setUserName,
@@ -315,8 +323,8 @@ var documentEdit = (function () {
     }
 })();
 
-var ToDoListHandler = (function() {
-    
+var ToDoListHandler = (function () {
+
     //Adds an item to the todolist with and itemtext and a prio
     function addItem(todoList, item, prio) {
 
@@ -336,8 +344,8 @@ var ToDoListHandler = (function() {
         }
 
         todoList.push(todo);
-        
-        
+
+
     }
     //Changes the current prio of an item. And pusches it to and history list
     function changePriority(todoList, index, newPrio) {
@@ -355,16 +363,16 @@ var ToDoListHandler = (function() {
         todoList[index].completed = true;
         todoList[index].history.dateCompleted = new Date();
 
-        let dateCreate = new Date(todoList[index].history.dateCreated); 
+        let dateCreate = new Date(todoList[index].history.dateCreated);
         let dateFinish = todoList[index].history.dateCompleted;
-        
+
 
         let timespent = (dateFinish - dateCreate);
         console.log(dateFinish.getTime());
         console.log(dateCreate.getTime());
-        timespent = (timespent / 1000 /  60 / 60)
+        timespent = (timespent / 1000 / 60 / 60)
         console.log(timespent);
-        
+
         todoList[index].history.timeSpent = timespent;
 
     }
@@ -373,10 +381,27 @@ var ToDoListHandler = (function() {
         todoList.splice(index, 1);
     }
     //Gets an item from the todolist.
-    function getItem(todoList, index){
+    function getItem(todoList, index) {
         itemToReturn = todoList[index];
 
         return itemToReturn;
+    }
+
+    //function that sort the to do-list
+    function sortTodoList(todoList) {
+
+        for (let i = 0; i < todoList.length - 1; i++) {
+
+            checksLeft = (todoList.length - 1) - i;
+            for (let y = 0; y < checksLeft; y++) {
+
+                if (todoList[y].priority > todoList[y + 1].priority) {
+                    const temp = todoList[y + 1].priority;
+                    todoList[y + 1].priority = todoList[y].priority;
+                    todoList[y].priority = temp;
+                }
+            }
+        }
     }
 
     return {
@@ -384,6 +409,7 @@ var ToDoListHandler = (function() {
         deleteItem,
         markAsComplete,
         changePriority,
+        sortTodoList,
         getItem
     }
 
