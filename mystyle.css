@@ -25,20 +25,8 @@
     width: 50%;
     color: black;
     margin-left: 10px;
- }
-
-li{
-   list-style: none;
-   list-style-type: none;
-}
-
-ul li::before{
-   content: "\2022";
-   color: red;
-   font-weight: bold;
-   display: inline-block; 
-   width: 1em;
-   margin-left: -1em;
+    list-style:none;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
  }
 
 
@@ -103,4 +91,10 @@ input{
 
 .completeBtn{
    margin-left: 1%;
+   padding: 0;
+   font-size: 12px;
+   color:limegreen;
+   background-color: white;
+   text-align: center;
+   font-weight: bold;
 }
