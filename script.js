@@ -33,13 +33,20 @@ var EventHandlers = (function () {
 
         //register event
         $("#registerBtn").click(function () {
-            $("#addDiv").show();
+            
             
             const name = $("#registerInputName").val();
             const email = $("#registerInputEmail").val();
             
+            tempUser = UserStorage.getUserByEmail(email);
+            if (tempUser != null){
+                console.log("Email already in use! test");
+                return;
+            }
 
             UserStorage.saveUser(name, email);
+            
+
             const user = UserStorage.getUserByEmail(email);
             todoList = user.todoList;
             currentId = user.id;
@@ -49,6 +56,7 @@ var EventHandlers = (function () {
             documentEdit.infoText("You can start using your todo-list");
             documentEdit.setUserName(user.name);
             documentEdit.setUserEmail(user.email);
+            $("#addTodos").show();
             refresh();
 
         });
@@ -62,8 +70,11 @@ var EventHandlers = (function () {
                 console.log("Sign up first");
             }
             else {
+                $("#addTodos").show();
+                documentEdit.hideRegister();
+                
+
                 todoList = user.todoList;
-                $("#addDiv").show();
                 refresh();
                 documentEdit.setUserName(user.name);
                 documentEdit.setUserEmail(user.email);
@@ -79,7 +90,8 @@ var EventHandlers = (function () {
         })
         //Sign out event
         $("#logOutBtn").click(function(){
-            $("#addDiv").hide();
+            $("#addTodos").hide();
+            documentEdit.showRegister();
             $("#todoList").empty();
             currentId = -1;
             signedIn = false;
@@ -246,6 +258,17 @@ var UserStorage = (function () {
 
 var documentEdit = (function () {
 
+    function showRegister(){
+        $("#registerInputName").show();
+        $("#registerInputEmail").show();
+        $("#registerBtn").show();
+    }
+    function hideRegister(){
+        $("#registerInputName").hide();
+        $("#registerInputEmail").hide();
+        $("#registerBtn").hide();
+    }
+
 
     function addLi(text, index){
         
@@ -286,7 +309,9 @@ var documentEdit = (function () {
         setUserEmail,
         setUserName,
         setUserTodo,
-        infoText
+        infoText,
+        showRegister,
+        hideRegister
     }
 })();
 
@@ -367,7 +392,7 @@ var ToDoListHandler = (function() {
 
 $(document).ready(function () {
 
-    $("#addDiv").hide();
+    $("#addTodos").hide();
     EventHandlers.init();
     UserStorage.init();
 });
