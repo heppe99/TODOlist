@@ -1,6 +1,6 @@
 //You can create a todoList = [] in the console to try it...  
 
-var ToDoListHandler = (function() {
+var ToDoListHandler = (function () {
 
     function addItem(todoList, item, prio) {
 
@@ -10,7 +10,6 @@ var ToDoListHandler = (function() {
             priorityChanges: [],
         }
 
-        // våra aktiviter som läggs i varje todolist element
         const todo = {
             activity: item,
             priority: prio,
