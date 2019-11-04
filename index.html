@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <meta http-equiv = "X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel = "stylesheet" href = "mystyle.css">
 </head>
 
 <body>
     <div class="container">
-        <div id="inputfields-signup"> <input type="text" id="registerInputName" placeholder="Name...">
-            <input type="text" id="registerInputEmail" placeholder="Email...">
-            <button class="managerBtn" id="registerBtn">Sign up</button>
+            <div id="inputfields-signup">  <input type="text" id="registerInputName" placeholder="Name...">
+                <input type="text" id="registerInputEmail" placeholder="Email...">
+                <button class="managerBtn" id="registerBtn">Sign up</button>
+            </div>
+            <div id = "userDiv">
+                <input type = "text" id = "loginInput" placeholder = "Email...">
+                <button class = "managerBtn loginBtn"> Log in </button>
+                <button class="managerBtn" id="logOutBtn">Log out</button>
+            </div>
         </div>
-        <div id="userDiv">
-            <input type="text" id="loginInput" placeholder="Email...">
-            <button class="managerBtn loginBtn"> Log in </button>
-            <button class="managerBtn" id="logOutBtn">Log out</button>
-        </div>
+
+    <div id = "addDiv">
+       <!-- <h1 style = "margin-left: 120px;"  >Things to do</h1> -->
+        <input type = "text" id = "inputItemToList" placeholder = "Add to list...">
+        <input type = "text" id = "inputPrioItem" placeholder = "Prio 1-5">
+        <button class="managerBtn"  id = "addToListBtn">Add</button>
     </div>
 
-    <div id="addDiv">
-        <!-- <h1 style = "margin-left: 120px;"  >Things to do</h1> -->
-        <input type="text" id="inputItemToList" placeholder="Add to list...">
-        <input type="text" id="inputPrioItem" placeholder="Prio 1-5">
-        <button class="managerBtn" id="addToListBtn">Add</button>
-    </div>
-
-
-
+    
+     
     <!-- Ny del -->
-    <div id="todoPart">
-        <h1 style="margin-left: 120px;"> Things to do </h1>
-        <ul id="todoList" style="margin-left:50px; color: blue;"> </ul>
+    <div id = "todoPart">
+        <h1 style = "margin-left: 120px;"  > Things to do </h1>
+        <ul id = "todoList" style= "margin-left:50px; color: blue;"> </ul>
     </div>
 
+    <footer>TUC - Linköping &copy;2019 </footer>
+    
     <!-- <script src="scripts.js"></script>  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src = "script.js"></script>
     <!-- <script src = "ali.js"></script>
     <script src = "khalid.js"></script>
     <script src = "eric.js"></script>
     <script src = "lukas.js"></script>
     <script src = "userStorage.js"></script> -->
-    <footer>TUC - Linköping &copy;2019 </footer>
 </body>
 
 </html>

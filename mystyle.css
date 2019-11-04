@@ -1,82 +1,111 @@
-#addDiv {
-  background-color: black;
-  width: 450px;
-  height: 100px;
-  margin-top: 50px;
-  padding: 3px;
-  border-end-end-radius: 25%;
+#addDiv{
+    background-color: black;
+   width: 450px;
+   height: 100px;
+   margin-top: 50px;
 }
 
 .container {
-  display: flex;
-  background-color: lime;
-  padding: 10px;
-  border-radius: 5px;
+   display: flex;
+   background-color: lime;
+   padding: 10px;
+   border-radius: 5px;
+ }
+ 
+ #inputfields-signup {
+   flex: 0 0 65%;
+ }
+ 
+ #userDiv {
+   flex: 1;
+ }
+
+
+ul li::before{
+   content: "\2022";
+   color: red;
+   font-weight: bold;
+   display: inline-block; 
+   width: 1em;
+   margin-left: -1em;
+ }
+
+body{
+   background-color: white;
 }
 
-#inputfields-signup {
-  flex: 0 0 65%;
+..managerBtn{
+   width: 20%;
+   padding: 5px;
+   text-align: center;
+   font-size: 12px;
+   cursor: pointer;
+   font-weight: bold;
+   background-color: white;
 }
 
-#userDiv {
-  flex: 1;
-}
-
-ul li::before {
-  content: '\2022';
-  color: red;
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-}
-
-body {
-  background-color: white;
-}
-
+/* #Clouds Flat Button
+==================================================*/
 .managerBtn {
-  width: 20%;
-  padding: 5px;
-  color: #555;
-  text-align: center;
-  font-size: 12px;
-  cursor: pointer;
-  font-weight: bold;
+    position: relative;
+    vertical-align: top;
+    width: 20%;
+    height: 30px;
+    padding: 0;
+    font-size: 12px;
+    color:#454545;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #ecf0f1;
+    border: 0;
+    border-bottom: 2px solid #dadedf;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #dadedf;
+    box-shadow: inset 0 -2px #dadedf;
+    margin: 1px;
+  }
+  .managerBtn:active {
+    top: 1px;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+input{
+   margin: 1px;
+   border: none;
+   border-radius: 0px;
+   width: 150px;
+   height: 20px;
+   padding: 5px;
+   font-size: 14px;
+}
+.deleteBtn{
+   margin-left:50px;
+   color :red;
+   background-color: lightblue;
+
+   background-color: Transparent;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
 }
 
-input {
-  margin: 1px;
-  border: none;
-  border-radius: 0px;
-  width: 150px;
-  padding: 5px;
-  font-size: 14px;
-}
-.deleteBtn {
-  margin-left: 50px;
-  color: red;
-  background-color: lightblue;
-
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
+#registerBtn{
+   
 }
 
-#registerBtn {
+#logOutBtn{
+   float:right;
 }
 
-#logOutBtn {
-  float: right;
-}
 footer {
-  display: flex;
-  background-color: lime;
-  padding: 10px;
-  justify-content: center;
-  top: 400px;
-  position: relative;
-}
+   display: flex;
+   background-color: lime;
+   padding: 10px;
+   justify-content: center;
+   top: 400px;
+   position: relative;
+ }
