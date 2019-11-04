@@ -1,75 +1,77 @@
-#addDiv{
-    background-color: black;
-   width: 450px;
-   height: 100px;
-   margin-top: 50px;
+#addDiv {
+  background-color: black;
+  width: 450px;
+  height: 100px;
+  margin-top: 50px;
 }
 
 .container {
-   display: flex;
-   background-color: lime;
-   padding: 10px;
-   border-radius: 5px;
- }
- 
- #inputfields-signup {
-   flex: 0 0 65%;
- }
- 
- #userDiv {
-   flex: 1;
- }
-
-
-ul li::before{
-   content: "\2022";
-   color: red;
-   font-weight: bold;
-   display: inline-block; 
-   width: 1em;
-   margin-left: -1em;
- }
-
-body{
-   background-color: white;
+  display: flex;
+  background-color: lime;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.managerBtn{
-   width: 20%;
-   padding: 5px;
-   color: #555;
-   text-align: center;
-   font-size: 12px;
-   cursor: pointer;
-   font-weight: bold;
-  
+#inputfields-signup {
+  flex: 0 0 65%;
 }
 
-input{
-   margin: 1px;
-   border: none;
-   border-radius: 0px;
-   width: 150px;
-   padding: 5px;
-   font-size: 14px;
-}
-.deleteBtn{
-   margin-left:50px;
-   color :red;
-   background-color: lightblue;
-
-   background-color: Transparent;
-   background-repeat:no-repeat;
-   border: none;
-   cursor:pointer;
-   overflow: hidden;
-   outline:none;
+#userDiv {
+  flex: 1;
 }
 
-#registerBtn{
-   
+ul li::before {
+  content: '\2022';
+  color: red;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
 }
 
-#logOutBtn{
-   float:right;
+body {
+  background-color: white;
+}
+
+.managerBtn {
+  width: 20%;
+  padding: 5px;
+  color: #555;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+input {
+  margin: 1px;
+  border: none;
+  border-radius: 0px;
+  width: 150px;
+  padding: 5px;
+  font-size: 14px;
+}
+.deleteBtn {
+  margin-left: 50px;
+  color: red;
+  background-color: lightblue;
+
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+#registerBtn {
+}
+
+#logOutBtn {
+  float: right;
+}
+footer {
+  display: flex;
+  background-color: lime;
+  padding: 10px;
 }
