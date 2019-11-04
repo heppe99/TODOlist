@@ -36,7 +36,7 @@ var EventHandlers = (function () {
 
         //register event
         $("#registerBtn").click(function () {
-
+            $("#addDiv").show();
             const name = $("#registerInputName").val();
             const email = $("#registerInputEmail").val();
 
@@ -51,7 +51,6 @@ var EventHandlers = (function () {
         });
         //sign up event
         $(".loginBtn").click(function () {
-            $("#addDiv").show();
             $("#todoList").empty();
             const email = $("#loginInput").val();
             let user = UserStorage.getUserByEmail(email);
@@ -61,7 +60,7 @@ var EventHandlers = (function () {
             }
             else {
                 todoList = user.todoList;
-            
+                $("#addDiv").show();
                 refresh();
                 //We need to set some values at this point so the user can 
                 // start adding items to his to do list
@@ -73,6 +72,7 @@ var EventHandlers = (function () {
         })
 
         $("#logOutBtn").click(function(){
+            $("#addDiv").hide();
             $("#todoList").empty();
             currentId = -1;
             signedIn = false;
