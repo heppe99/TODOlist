@@ -31,9 +31,10 @@ var documentEdit = (function(){
         text2.innerText= text;
     }
     function addLi(text, index){
-        btn = "<button class=\"deleteBtn\" id=\"" + index +"\" >X</button>"
+        btn = "<button class=\"deleteBtn\" id=\"" + index + "\" >X</button>"
         let liID = index + 10;
         $("#todoList").append("<li id=\"" + liID +"\" >" + text + btn + "</li>")
+        
         $('#' + index).click(function(){
             ToDoListHandler.deleteItem(todoList, index);
             deleteLi(liID);
