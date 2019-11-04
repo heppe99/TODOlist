@@ -8,8 +8,14 @@ var EventHandlers = (function () {
     let signedIn = false;
 
     function init() {
-        $("#addToListBtn").click(onClickAddItemTodo);
+        $("#addToListBtn").click(function () {
+            onClickAddItemTodo();
+            $("#inputItemToList").val("");
+            $("#inputPrioItem").val("");
+        });
 
+
+        
         //Handles deletebutton on each todo
         $(document).on('click', '.deleteBtn', function () {
 
@@ -40,6 +46,7 @@ var EventHandlers = (function () {
 
             tempUser = UserStorage.getUserByEmail(email);
             if (tempUser != null) {
+                documentEdit.infoText("Email already in use! test");
                 console.log("Email already in use! test");
                 return;
             }
