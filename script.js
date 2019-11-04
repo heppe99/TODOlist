@@ -285,7 +285,7 @@ var documentEdit = (function () {
 
         btn = "<button class=\"deleteBtn\" id=\"" + index + "\" >✘</button>"
         completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) + "\" >✔</button>"
-        $("#todoList").append("<li id=\"" + index * 100 + "\" >" + text + completeButton + btn + "</li>");
+        $("#todoList").append("<li id=\"" + index * 100 + "\" >" + text + btn + completeButton + "</li>");
 
 
     }
