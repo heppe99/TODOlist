@@ -11,13 +11,13 @@
    display: flex;
    background-color: lime;
    padding: 10px;
-
+  
  }
-
+ 
  #inputfields-signup {
    flex: 0 0 65%;
  }
-
+ 
  #userDiv {
    flex: 1;
  }
@@ -29,19 +29,6 @@
     font-family: "Trebuchet MS", Helvetica, sans-serif;
  }
 
-body{
-   background-color: white;
-}
-
-.managerBtn{
-   width: 20%;
-   padding: 5px;
-   text-align: center;
-   font-size: 12px;
-   cursor: pointer;
-   font-weight: bold;
-   background-color: white;
-}
 
 /* #Clouds Flat Button
 ==================================================*/
@@ -82,14 +69,13 @@ input{
 }
 .deleteBtn{
    color :red;
-   background-color: lightblue;
-   background-color: Transparent;
-   background-repeat:no-repeat;
+   background: none;
    border: none;
    cursor:pointer;
    overflow: hidden;
    outline:none;
    margin-right: 0px;
+   font-size: 16px;
 }
 
 #logOutBtn{
@@ -104,10 +90,12 @@ input{
 
 .completeBtn{
    margin-left: 1%;
-   padding: 0;
-   font-size: 12px;
+   font-size: 16px;
    color:limegreen;
-   background-color: white;
+   background: none;
    text-align: center;
    font-weight: bold;
+   border: none;
+   cursor: none;
 }
+

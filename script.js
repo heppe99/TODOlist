@@ -233,8 +233,8 @@ var documentEdit = (function () {
 
     function addLi(text, index){
         
-        btn = "<button class=\"deleteBtn\" id=\"" + index +"\" >X</button>"
-        completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) +"\" >X</button>"
+        btn = "<button class=\"deleteBtn\" id=\"" + index +"\" >✘</button>"
+        completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) +"\" >✔</button>"
         $("#todoList").append("<li id=\"" + index * 100 +"\" >" + text + completeButton+ btn + "</li>");
         
     
