@@ -17,7 +17,21 @@ var EventHandlers = (function () {
             ToDoListHandler.deleteItem(todoList, this.id);
             documentEdit.deleteLi(this.id + 100);
             UserStorage.updateUser(currentId, todoList);
+               
         })
+        $(document).on('click', '.completeBtn', function () {
+            ToDoListHandler.markAsComplete(todoList, this.id - 1000);
+            UserStorage.updateUser(currentId, todoList);
+            $("#todoList").empty();
+            
+            for (const i in todoList) {
+                const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed)
+                documentEdit.addLi(todoItemInHtml, i);
+            }
+            //documentEdit.markAsComplete(this.id - 1000 + 100);
+        })
+
+
 
         //register event
         $("#registerBtn").click(function () {
@@ -36,6 +50,7 @@ var EventHandlers = (function () {
         });
         //sign up event
         $(".loginBtn").click(function () {
+            $("#todoList").empty();
             const email = $("#loginInput").val();
             let user = UserStorage.getUserByEmail(email);
             
@@ -58,8 +73,15 @@ var EventHandlers = (function () {
             }
         })
 
+        $("#logOutBtn").click(function(){
+            $("#todoList").empty();
+            currentId = -1;
+            signedIn = false;
+        })
+
 
     }
+
 
     //Function that updates  
     function onClickAddItemTodo() {
@@ -181,6 +203,7 @@ var UserStorage = (function () {
         saveChangesUserList();
     }
 
+
     function saveChangesUserList() {
         const listUsers = JSON.stringify(userList);
         localStorage.setItem('UserListLocalStorage', listUsers);
@@ -218,11 +241,14 @@ var documentEdit = (function () {
         $("#"+index).remove();
         
     }
+    function markAsComplete(index){
+        $('#'+index).css({'text-decoration': 'line-through'})
+    }
     
     return {
         addLi,
-        deleteLi  //add this so we'll be ablt to call it in script.js
-    
+        deleteLi,  //add this so we'll be ablt to call it in script.js
+        markAsComplete
     }
 })();
 
