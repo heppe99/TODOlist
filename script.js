@@ -34,16 +34,22 @@ var EventHandlers = (function () {
         //register event
         $("#registerBtn").click(function () {
             $("#addDiv").show();
+            
             const name = $("#registerInputName").val();
             const email = $("#registerInputEmail").val();
-
+            
 
             UserStorage.saveUser(name, email);
             const user = UserStorage.getUserByEmail(email);
             todoList = user.todoList;
             currentId = user.id;
             signedIn = true;
-            alert("You can start using your todo-list");
+
+            console.log("You can start using your todo-list");
+            documentEdit.infoText("You can start using your todo-list");
+            documentEdit.setUserName(user.name);
+            documentEdit.setUserEmail(user.email);
+            refresh();
 
         });
         //sign up event
@@ -53,17 +59,21 @@ var EventHandlers = (function () {
             let user = UserStorage.getUserByEmail(email);
             
             if (user === null) {
-                alert("Sign up first");
+                console.log("Sign up first");
             }
             else {
                 todoList = user.todoList;
                 $("#addDiv").show();
                 refresh();
+                documentEdit.setUserName(user.name);
+                documentEdit.setUserEmail(user.email);
+                documentEdit.setUserTodo(todoList.length)
                 //We need to set some values at this point so the user can 
                 // start adding items to his to do list
                 signedIn = true;
                 currentId = user.id; 
-                alert("You can manage your todo's now")
+                console.log("You can manage your todo's now");
+                documentEdit.infoText("You can manage your todo's now");
                 
             }
         })
@@ -73,6 +83,11 @@ var EventHandlers = (function () {
             $("#todoList").empty();
             currentId = -1;
             signedIn = false;
+            documentEdit.setUserName(" ");
+            documentEdit.setUserEmail(" ");
+            console.log("You have logged out.");
+            documentEdit.infoText("You have logged out.");
+            
         })
     }
 
@@ -94,14 +109,15 @@ var EventHandlers = (function () {
             UserStorage.updateUser(currentId, todoList);
         }
         else {
-            alert("Login first");
+            console.log("Login first");
+            documentEdit.infoText("Login first")
         }
     }
 
     //Refreshes the UL list
     function refresh(){
         $("#todoList").empty();
-            
+        documentEdit.setUserTodo(todoList.length)
         for (const i in todoList) {
             const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed)
             documentEdit.addLi(todoItemInHtml, i);
@@ -144,7 +160,7 @@ var UserStorage = (function () {
         for (const i in userList) {
             const user = userList[i];
             if (user.email === email) {
-                alert("Email already in use!");
+                console.log("Email already in use!");
                 return null;
             }
         }
@@ -248,11 +264,29 @@ var documentEdit = (function () {
     function markAsComplete(index){
         $('#'+index).css({'text-decoration': 'line-through'})
     }
+
+    function setUserName(name){
+        $("#userName").text("Name: " + name);
+    }
+    function setUserEmail(email){
+        $("#userEmail").text("E-mail: " + email);
+    }
+    function setUserTodo(amount){
+        $("#userTodos").text("Todos: " + amount);
+
+    }
+    function infoText(text){
+        $("#info").text(text);
+    }
     
     return {
         addLi,
         deleteLi,  
-        markAsComplete
+        markAsComplete,
+        setUserEmail,
+        setUserName,
+        setUserTodo,
+        infoText
     }
 })();
 
