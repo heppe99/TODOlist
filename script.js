@@ -13,22 +13,23 @@ var EventHandlers = (function () {
         //Let's group all our events here
         //We still need an event for pushing the complete button 
         $(document).on('click', '.deleteBtn', function () {
-
-            ToDoListHandler.deleteItem(todoList, this.id);
-            documentEdit.deleteLi(this.id + 100);
-            UserStorage.updateUser(currentId, todoList);
-               
-        })
-        $(document).on('click', '.completeBtn', function () {
-            ToDoListHandler.markAsComplete(todoList, this.id - 1000);
-            UserStorage.updateUser(currentId, todoList);
-            $("#todoList").empty();
             
-            for (const i in todoList) {
-                const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed)
-                documentEdit.addLi(todoItemInHtml, i);
-            }
-            //documentEdit.markAsComplete(this.id - 1000 + 100);
+            ToDoListHandler.deleteItem(todoList, this.id);
+            console.log("DELETE item: " + this.id);
+
+            documentEdit.deleteLi(this.id * 100);
+            console.log("DELETE li: " + this.id * 100);
+            UserStorage.updateUser(currentId, todoList);
+
+            refresh();   
+        })
+
+        $(document).on('click', '.completeBtn', function () {
+            console.log( "COMPLETE BUTTON :" + this.id);   
+            ToDoListHandler.markAsComplete(todoList, this.id / 1000);
+            UserStorage.updateUser(currentId, todoList);
+            
+            refresh();
         })
 
 
@@ -50,6 +51,7 @@ var EventHandlers = (function () {
         });
         //sign up event
         $(".loginBtn").click(function () {
+            $("#addDiv").show();
             $("#todoList").empty();
             const email = $("#loginInput").val();
             let user = UserStorage.getUserByEmail(email);
@@ -60,10 +62,7 @@ var EventHandlers = (function () {
             else {
                 todoList = user.todoList;
             
-                for (const i in todoList) {
-                    const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed)
-                    documentEdit.addLi(todoItemInHtml, i);
-                }
+                refresh();
                 //We need to set some values at this point so the user can 
                 // start adding items to his to do list
                 signedIn = true;
@@ -108,8 +107,18 @@ var EventHandlers = (function () {
         }
     }
 
+    function refresh(){
+        $("#todoList").empty();
+            
+        for (const i in todoList) {
+            const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed)
+            documentEdit.addLi(todoItemInHtml, i);
+        }
+    }
 
-    return { init }
+
+
+    return { init, refresh}
 
 })();
 
@@ -228,10 +237,10 @@ var documentEdit = (function () {
 
 
     function addLi(text, index){
+        
         btn = "<button class=\"deleteBtn\" id=\"" + index +"\" >X</button>"
-        let liID = index + 100;
-        completeButton = "<button class=\"completeBtn\" id=\"" + (index + 1000) +"\" >X</button>"
-        $("#todoList").append("<li id=\"" + liID +"\" >" + text + completeButton+ btn + "</li>");
+        completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) +"\" >X</button>"
+        $("#todoList").append("<li id=\"" + index * 100 +"\" >" + text + completeButton+ btn + "</li>");
         
     
     }
@@ -314,6 +323,8 @@ var ToDoListHandler = (function() {
 
 // we need to initialize two modules... userstorage to get the userlist !
 $(document).ready(function () {
+
+    $("#addDiv").hide();
     EventHandlers.init();
     UserStorage.init();
 });
