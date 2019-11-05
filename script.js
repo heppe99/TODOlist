@@ -129,9 +129,10 @@ var EventHandlers = (function () {
 
             const inputItem = $("#inputItemToList").val();
             const prioItem = $("#inputPrioItem").val();
+            const estimatedItem = $("#inputEstimatedTime").val();
 
             //tar in en todolist av en user, 
-            ToDoListHandler.addItem(todoList, inputItem, prioItem);
+            ToDoListHandler.addItem(todoList, inputItem, prioItem, estimatedItem);
 
             refresh();
 
@@ -159,7 +160,7 @@ var EventHandlers = (function () {
                 time = time.substring(0, 4);
                 
             }
-            const todoItemInHtml = ("| " + todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed + " | Time Spent: " + time + " h")
+            const todoItemInHtml = ("| " + todoList[i].activity + " | Prio: " + todoList[i].priority + " | Estimated time: " + todoList[i].estimated +" | Complete: " + todoList[i].completed)
             documentEdit.addLi(todoItemInHtml, i);
         }
     }
@@ -346,7 +347,7 @@ var documentEdit = (function () {
 var ToDoListHandler = (function () {
 
     //Adds an item to the todolist with and itemtext and a prio
-    function addItem(todoList, item, prio) {
+    function addItem(todoList, item, prio, estimatedTime) {
 
         const historyStats = {
             dateCreated: new Date(),
@@ -360,7 +361,8 @@ var ToDoListHandler = (function () {
             activity: item,
             priority: prio,
             completed: false,
-            history: historyStats
+            history: historyStats,
+            estimated: estimatedTime
         }
 
         todoList.push(todo);
