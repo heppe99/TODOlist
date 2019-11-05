@@ -1,6 +1,5 @@
 body{
-   background-image: url("bg.png");
-   background-color: white;
+   background-image: linear-gradient(to right,#37B9E9, #9CBCB4);
 }
 
 #bigContainer{
@@ -23,6 +22,9 @@ body{
    opacity: 0.75;
  }
  
+ .divLeftTodo {
+   flex: 0 0 80%;
+ }
  .divLeft {
    flex: 0 0 65%;
  }
@@ -38,10 +40,13 @@ body{
  li{
    list-style:none;
    font-family: "Trebuchet MS", Helvetica, sans-serif;
-   width: 100%;
+   width: 700px;
    display: inline-block;
-   border: 1px;
-   border-color: white;
+   background-color: rgba(0.95, 0.95, 0.95, 0.1);
+   color: white;
+   margin: 1px;
+   padding: 5px;
+   border-radius: 5px;;
  }
 
 
@@ -123,13 +128,14 @@ input{
 
 .userInfo{
    color: white;
-   background-color: gray;
-   border-radius: 2px;
+   background-color: rgba(0.95, 0.95, 0.95, 0.1);
+   border-radius: 5px;
    height: 70%;
    width: 60%;
    padding: 10px;
    float:right;
    margin-right: 4px;
+   margin-top: 16px;
    font-size: 16px;
    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
@@ -151,6 +157,7 @@ input{
    height: 20px;
    width: 100%;
    background-color: #29487D;
+   background-color: rgba(41, 72, 125, 0.2);
    color: white;
    text-align: center;
  }
