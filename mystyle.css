@@ -19,7 +19,7 @@ body{
  }
 
  .menu{
-   background-color:#5680E9;
+   background-color:#29487D;
    opacity: 0.75;
  }
  
@@ -40,6 +40,8 @@ body{
    font-family: "Trebuchet MS", Helvetica, sans-serif;
    width: 100%;
    display: inline-block;
+   border: 1px;
+   border-color: white;
  }
 
 
@@ -133,7 +135,7 @@ input{
 }
 
 #info{
-   color:black;
+   color:white;
    display: inline-block;
    margin-top: 0;
    margin-left: 15%;
@@ -148,7 +150,7 @@ input{
    bottom: 0;
    height: 20px;
    width: 100%;
-   background-color: blue;
+   background-color: #29487D;
    color: white;
    text-align: center;
  }
