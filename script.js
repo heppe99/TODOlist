@@ -2,7 +2,7 @@
 
 var EventHandlers = (function () {
 
-
+    var test = 0;
     var todoList = [];
     let currentId = null;
     let signedIn = false;
