@@ -67,8 +67,11 @@ body{
     margin-bottom: 10px;
   }
 
+  .biggerBtn{
+     width: 130px;
+  }
   .bigBtn{
-   width: 90px;
+   width: 100px;
   }
   .smallBtn{
      width: 50px;
@@ -126,10 +129,6 @@ input{
    background-color: rgba(240, 240, 240, 0.3);
 }
 
-#registerBtn{
-width: 8%;
-height: 80%;
-}
 
 .userInfo{
    color: white;
