@@ -7,15 +7,56 @@ var EventHandlers = (function () {
     let currentId = null;
     let signedIn = false;
 
+    let changePrio = false;
+
     function init() {
         $("#addToListBtn").click(function () {
-            onClickAddItemTodo();
+
+            if(changePrio === false){
+                onClickAddItemTodo();
             $("#inputItemToList").val("");
             $("#inputPrioItem").val("");
             $("#inputEstimatedTime").val("");
+            }
+            if(changePrio === true){
+                let input = $("#inputItemToList").val();
+                let newprio = $("#inputPrioItem").val();
+
+                for (const i in todoList) {
+                    const todo = todoList[i].activity;
+                    
+                    if (todo === input) {
+                        console.log(todo);
+                        
+                        ToDoListHandler.changePriority(todoList, i, newprio)
+                        UserStorage.updateUser(currentId, todoList);
+                        refresh();
+                        changePrio = false;
+                        $("#inputEstimatedTime").show();
+                        $("#inputItemToList").attr("placeholder", "Activity name...");
+                        $("#inputPrioItem").attr("placeholder", "Prio 1-5");
+                        break;
+                    }
+        
+                }
+                $("#inputEstimatedTime").show();
+                documentEdit.infoText("No activity with that name.");
+                changePrio = false;
+                return null;
+            }
+
+            
         });
 
+        $("#changePrio").click(function(){
+            changePrio = true;
+            console.log("Change TRUE");
+            $("#inputItemToList").attr("placeholder", "Activity");
+            $("#inputPrioItem").attr("placeholder", "New Priority");
+            $("#inputEstimatedTime").hide();
+            
 
+        })
         
         //Handles deletebutton on each todo
         $(document).on('click', '.deleteBtn', function () {
