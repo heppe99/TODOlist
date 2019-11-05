@@ -21,6 +21,9 @@ var EventHandlers = (function () {
             if (changePrio === true) {
                 let input = $("#inputItemToList").val();
                 let newprio = $("#inputPrioItem").val();
+                $("#inputItemToList").val("");
+                $("#inputPrioItem").val("");
+                documentEdit.changeObjectText("addToListBtn", "Add");
 
                 for (const i in todoList) {
                     const todo = todoList[i].activity;
@@ -50,6 +53,7 @@ var EventHandlers = (function () {
 
         $("#changePrio").click(function () {
             changePrio = true;
+            documentEdit.changeObjectText("addToListBtn", "Save");
             console.log("Change TRUE");
             $("#inputItemToList").attr("placeholder", "Activity");
             $("#inputPrioItem").attr("placeholder", "New Priority");
@@ -423,6 +427,9 @@ var documentEdit = (function () {
     function infoText(text) {
         $("#info").text(text);
     }
+    function changeObjectText(Id, text){
+        $("#"+Id).text(text);
+    }
 
     return {
         addLi,
@@ -433,7 +440,8 @@ var documentEdit = (function () {
         setUserTodo,
         infoText,
         showRegister,
-        hideRegister
+        hideRegister,
+        changeObjectText
     }
 })();
 
