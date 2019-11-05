@@ -43,7 +43,7 @@ var EventHandlers = (function () {
 
                 }
                 $("#inputEstimatedTime").show();
-                documentEdit.infoText("No activity with that name.");
+                //documentEdit.infoText("No activity with that name.");
                 changePrio = false;
                 return null;
             }
@@ -130,7 +130,7 @@ var EventHandlers = (function () {
                 return;
             }
             else if(tempUser != null )  {
-                documentEdit.infoText("Email already in use! test");
+                documentEdit.infoText("Email already in use!");
                 console.log("Email already in use! test");
                 return;
             }
@@ -457,7 +457,6 @@ var ToDoListHandler = (function () {
             priorityChanges: [],
         }
 
-        // våra aktiviter som läggs i varje todolist element
         const todo = {
             activity: item,
             priority: prio,
@@ -574,4 +573,5 @@ $(document).ready(function () {
     $("#logOutBtn").hide();
     EventHandlers.init();
     UserStorage.init();
+    documentEdit.infoText("Welcome!")
 });
