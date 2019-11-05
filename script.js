@@ -12,22 +12,22 @@ var EventHandlers = (function () {
     function init() {
         $("#addToListBtn").click(function () {
 
-            if(changePrio === false){
+            if (changePrio === false) {
                 onClickAddItemTodo();
-            $("#inputItemToList").val("");
-            $("#inputPrioItem").val("");
-            $("#inputEstimatedTime").val("");
+                $("#inputItemToList").val("");
+                $("#inputPrioItem").val("");
+                $("#inputEstimatedTime").val("");
             }
-            if(changePrio === true){
+            if (changePrio === true) {
                 let input = $("#inputItemToList").val();
                 let newprio = $("#inputPrioItem").val();
 
                 for (const i in todoList) {
                     const todo = todoList[i].activity;
-                    
+
                     if (todo === input) {
                         console.log(todo);
-                        
+
                         ToDoListHandler.changePriority(todoList, i, newprio)
                         UserStorage.updateUser(currentId, todoList);
                         refresh();
@@ -37,7 +37,7 @@ var EventHandlers = (function () {
                         $("#inputPrioItem").attr("placeholder", "Prio 1-5");
                         break;
                     }
-        
+
                 }
                 $("#inputEstimatedTime").show();
                 documentEdit.infoText("No activity with that name.");
@@ -45,19 +45,19 @@ var EventHandlers = (function () {
                 return null;
             }
 
-            
+
         });
 
-        $("#changePrio").click(function(){
+        $("#changePrio").click(function () {
             changePrio = true;
             console.log("Change TRUE");
             $("#inputItemToList").attr("placeholder", "Activity");
             $("#inputPrioItem").attr("placeholder", "New Priority");
             $("#inputEstimatedTime").hide();
-            
+
 
         })
-        
+
         //Handles deletebutton on each todo
         $(document).on('click', '.deleteBtn', function () {
 
@@ -78,9 +78,9 @@ var EventHandlers = (function () {
 
             refresh();
         })
-        $(document).on('click', '.historyBtn', function(){
+        $(document).on('click', '.historyBtn', function () {
             $("#history").show();
-            
+
 
             console.log("History Button: " + this.id);
 
@@ -89,24 +89,24 @@ var EventHandlers = (function () {
 
             let time = todoList[id].history.timeSpent
             let completed = "Not yet.";
-            if(time === undefined){
+            if (time === undefined) {
                 time = "0";
             }
-            else{
-                
-                time = time.toString();
-                time = time.substring(0, 4);
-                
+            else {
+
+                //time = time.toString();
+                //time = time.substring(0, 4);
+
             }
-            if (todoList[id].history.dateCompleted != undefined){
+            if (todoList[id].history.dateCompleted != undefined) {
                 completed = todoList[id].history.dateCompleted;
             }
-            
+
 
             $("#dateComplete").text("Date Created: " + todoList[id].history.dateCreated)
             $("#dateCreated").text("Date Completed: " + completed)
             $("#timeSpent").text("Time Spent: " + time)
-            $("#priorityChanges").text("Amount of Prio Changes: ")
+            $("#priorityChanges").text("Amount of Prio Changes: " +todoList[id].history.priorityChanges.length)
 
 
 
@@ -120,11 +120,17 @@ var EventHandlers = (function () {
             const email = $("#registerInputEmail").val();
 
             tempUser = UserStorage.getUserByEmail(email);
-            if (tempUser != null) {
+            if( email === "" || name === ""){
+                documentEdit.infoText("Email and name are requierd");
+                console.log("Email and name is requierd");
+                return;
+            }
+            else if(tempUser != null )  {
                 documentEdit.infoText("Email already in use! test");
                 console.log("Email already in use! test");
                 return;
             }
+            
 
             UserStorage.saveUser(name, email);
 
@@ -237,16 +243,16 @@ var EventHandlers = (function () {
         documentEdit.setUserTodo(todoList.length)
         for (const i in todoList) {
             let time = todoList[i].history.timeSpent
-            if(time === undefined){
+            if (time === undefined) {
                 time = "0";
             }
-            else{
-                
+            else {
+
                 time = time.toString();
                 time = time.substring(0, 4);
-                
+
             }
-            const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Est. time: " + todoList[i].estimated +" | Complete: " + todoList[i].completed)
+            const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Est. time: " + todoList[i].estimated + "h | Complete: " + todoList[i].completed)
             documentEdit.addLi(todoItemInHtml, i);
         }
     }
@@ -477,12 +483,38 @@ var ToDoListHandler = (function () {
 
 
         let timespent = (dateFinish - dateCreate);
-        console.log(dateFinish.getTime());
-        console.log(dateCreate.getTime());
-        timespent = (timespent / 1000 / 60 / 60)
-        console.log(timespent);
+        console.log("Time finsih:"+dateFinish.getTime());
+        console.log("Time Created:"+dateCreate.getTime());
 
-        todoList[index].history.timeSpent = timespent;
+
+
+        //timespent = (timespent / 1000 / 60 / 60)
+        timeMin = (timespent / 1000 / 60)
+        console.log("TimeMin:" + timeMin);
+        let minutes = 0;
+        let hours = 0;
+        let x = 0;
+        for (let i = 0; i < timeMin; i++) {
+            if (x == 60) {
+                hours += 1;
+                console.log("HHH"+hours);
+                
+                minutes -= 59;
+                console.log("MIN:" + minutes);
+                
+                x = 0;
+            }
+            else {
+                minutes += 1;
+            }
+            x++;
+        }
+       
+        
+        console.log("Min: " + minutes + "h: " + hours);
+
+
+        todoList[index].history.timeSpent = ("Hours: " + hours + " Min: " + minutes);
 
     }
     //Deletes an item from todolist.
@@ -506,11 +538,11 @@ var ToDoListHandler = (function () {
             for (let y = 0; y < checksLeft; y++) {
 
                 if (todoList[y].priority > todoList[y + 1].priority) {
-                   
+
                     const temp = todoList[y + 1];
                     todoList[y + 1] = todoList[y];
                     todoList[y] = temp;
-                    
+
                 }
             }
         }
