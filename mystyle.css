@@ -68,7 +68,7 @@ body{
   }
 
   .biggerBtn{
-     width: 130px;
+     width: 135px;
   }
   .bigBtn{
    width: 100px;
@@ -164,4 +164,10 @@ input{
    background-color: rgba(41, 72, 125, 0.2);
    color: white;
    text-align: center;
+ }
+
+ @media only screen and (max-width: 600px) {
+   #footer {
+     display: none;
+   }
  }
