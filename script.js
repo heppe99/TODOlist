@@ -8,8 +8,14 @@ var EventHandlers = (function () {
     let signedIn = false;
 
     function init() {
-        $("#addToListBtn").click(onClickAddItemTodo);
+        $("#addToListBtn").click(function () {
+            onClickAddItemTodo();
+            $("#inputItemToList").val("");
+            $("#inputPrioItem").val("");
+        });
 
+
+        
         //Handles deletebutton on each todo
         $(document).on('click', '.deleteBtn', function () {
 
@@ -40,6 +46,7 @@ var EventHandlers = (function () {
 
             tempUser = UserStorage.getUserByEmail(email);
             if (tempUser != null) {
+                documentEdit.infoText("Email already in use! test");
                 console.log("Email already in use! test");
                 return;
             }
@@ -142,7 +149,17 @@ var EventHandlers = (function () {
         $("#todoList").empty();
         documentEdit.setUserTodo(todoList.length)
         for (const i in todoList) {
-            const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed)
+            let time = todoList[i].history.timeSpent
+            if(time === undefined){
+                time = "0";
+            }
+            else{
+                
+                time = time.toString();
+                time = time.substring(0, 4);
+                
+            }
+            const todoItemInHtml = ("| " + todoList[i].activity + " | Prio: " + todoList[i].priority + " | Complete: " + todoList[i].completed + " | Time Spent: " + time + " h")
             documentEdit.addLi(todoItemInHtml, i);
         }
     }
