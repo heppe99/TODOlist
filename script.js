@@ -389,7 +389,7 @@ var documentEdit = (function () {
 
         btn = "<button class=\"deleteBtn\" id=\"" + index + "\" >✘</button>"
         completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) + "\" >✔</button>"
-        historyBtn = "<button class =\"historyBtn\" id=\"" + (index * 10000) + "\">History </button>"
+        historyBtn = "<button class =\"historyBtn\" id=\"" + (index * 10000) + "\">📖</button>"
         $("#todoList").append("<li id=\"" + index * 100 + "\" >" + text + btn + completeButton + historyBtn + "</li>");
 
 
