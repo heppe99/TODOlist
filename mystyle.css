@@ -1,6 +1,11 @@
+body{
+   background-image: url("bg.png");
+   background-color: white;
+}
+
 #bigContainer{
    border-radius: 5px;
-   background-color:black;
+   background-color:#84CEEB;
 }
 
 .divAdd{
@@ -11,6 +16,11 @@
    display: flex;
    padding: 10px;
   
+ }
+
+ .menu{
+   background-color:#5680E9;
+   opacity: 0.75;
  }
  
  .divLeft {
