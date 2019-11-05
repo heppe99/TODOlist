@@ -36,6 +36,39 @@ var EventHandlers = (function () {
 
             refresh();
         })
+        $(document).on('click', '.historyBtn', function(){
+            $("#history").show();
+            
+
+            console.log("History Button: " + this.id);
+
+            let id = this.id / 10000;
+            console.log(id);
+
+            let time = todoList[id].history.timeSpent
+            let completed = "Not yet.";
+            if(time === undefined){
+                time = "0";
+            }
+            else{
+                
+                time = time.toString();
+                time = time.substring(0, 4);
+                
+            }
+            if (todoList[id].history.dateCompleted != undefined){
+                completed = todoList[id].history.dateCompleted;
+            }
+            
+
+            $("#dateComplete").text("Date Created: " + todoList[id].history.dateCreated)
+            $("#dateCreated").text("Date Completed: " + completed)
+            $("#timeSpent").text("Time Spent: " + time)
+            $("#priorityChanges").text("Amount of Prio Changes: ")
+
+
+
+        })
 
         //register event
         $("#registerBtn").click(function () {
@@ -64,6 +97,9 @@ var EventHandlers = (function () {
             documentEdit.setUserName(user.name);
             documentEdit.setUserEmail(user.email);
             $("#addTodos").show();
+            $("#loginbtn").hide();
+             $("#loginInput").hide();
+            documentEdit.hideRegister();
             $("#registerInputName").val("");
             $("#registerInputEmail").val("");
             refresh();
@@ -80,6 +116,8 @@ var EventHandlers = (function () {
             }
             else {
                 $("#addTodos").show();
+                $("#loginbtn").hide();
+                $("#loginInput").hide();
                 documentEdit.hideRegister();
 
 
@@ -109,6 +147,9 @@ var EventHandlers = (function () {
             documentEdit.setUserEmail(" ");
             console.log("You have logged out.");
             documentEdit.infoText("You have logged out.");
+            $("#history").hide();
+            $("#loginbtn").show();
+            $("#loginInput").show();
 
         })
 
@@ -303,7 +344,8 @@ var documentEdit = (function () {
 
         btn = "<button class=\"deleteBtn\" id=\"" + index + "\" >✘</button>"
         completeButton = "<button class=\"completeBtn\" id=\"" + (index * 1000) + "\" >✔</button>"
-        $("#todoList").append("<li id=\"" + index * 100 + "\" >" + text + btn + completeButton + "</li>");
+        historyBtn = "<button class =\"historyBtn\" id=\"" + (index * 10000) + "\">History </button>"
+        $("#todoList").append("<li id=\"" + index * 100 + "\" >" + text + btn + completeButton + historyBtn + "</li>");
 
 
     }
@@ -442,7 +484,7 @@ var ToDoListHandler = (function () {
 
 
 $(document).ready(function () {
-
+    $("#history").hide();
     $("#addTodos").hide();
     EventHandlers.init();
     UserStorage.init();
