@@ -1,5 +1,5 @@
 body{
-   background-image: linear-gradient(to right,#37B9E9, #9CBCB4);
+   background-image: linear-gradient(to right,#37B9E9, #37A5E9, #9CBCB4);
 }
 
 #bigContainer{
@@ -42,7 +42,7 @@ body{
    font-family: "Trebuchet MS", Helvetica, sans-serif;
    width: 700px;
    display: inline-block;
-   background-color: rgba(0.95, 0.95, 0.95, 0.1);
+   background-color: rgba(240, 240, 2405, 0.1);
    color: white;
    margin: 1px;
    padding: 5px;
@@ -123,6 +123,10 @@ input{
    overflow: hidden;
    outline:none;
    font-size: 16px;
+   float:right;
+}
+
+.historyBtn{
    float:right;
 }
 
