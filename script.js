@@ -12,6 +12,7 @@ var EventHandlers = (function () {
             onClickAddItemTodo();
             $("#inputItemToList").val("");
             $("#inputPrioItem").val("");
+            $("#inputEstimatedTime").val("");
         });
 
 
@@ -98,7 +99,8 @@ var EventHandlers = (function () {
             documentEdit.setUserEmail(user.email);
             $("#addTodos").show();
             $("#loginbtn").hide();
-             $("#loginInput").hide();
+            $("#loginInput").hide();
+            $("#logOutBtn").show();
             documentEdit.hideRegister();
             $("#registerInputName").val("");
             $("#registerInputEmail").val("");
@@ -118,6 +120,7 @@ var EventHandlers = (function () {
                 $("#addTodos").show();
                 $("#loginbtn").hide();
                 $("#loginInput").hide();
+                $("#logOutBtn").show();
                 documentEdit.hideRegister();
 
 
@@ -150,6 +153,7 @@ var EventHandlers = (function () {
             $("#history").hide();
             $("#loginbtn").show();
             $("#loginInput").show();
+            $("#logOutBtn").hide();
 
         })
 
@@ -201,7 +205,7 @@ var EventHandlers = (function () {
                 time = time.substring(0, 4);
                 
             }
-            const todoItemInHtml = ("| " + todoList[i].activity + " | Prio: " + todoList[i].priority + " | Estimated time: " + todoList[i].estimated +" | Complete: " + todoList[i].completed)
+            const todoItemInHtml = (todoList[i].activity + " | Prio: " + todoList[i].priority + " | Est. time: " + todoList[i].estimated +" | Complete: " + todoList[i].completed)
             documentEdit.addLi(todoItemInHtml, i);
         }
     }
@@ -486,6 +490,7 @@ var ToDoListHandler = (function () {
 $(document).ready(function () {
     $("#history").hide();
     $("#addTodos").hide();
+    $("#logOutBtn").hide();
     EventHandlers.init();
     UserStorage.init();
 });
